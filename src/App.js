@@ -7,8 +7,8 @@ function Todo({ todo, index, completeTodo, removeTodo }) {
     className="todo">
     { todo.text }
     <div>
-      <button onClick={() => completeTodo(index)}>Complete</button>
-      <button onClick={() => removeTodo(index)}>Delete</button>
+      <button onClick={() => completeTodo(index)} className="button1 bouncy">Complete</button>
+      <button onClick={() => removeTodo(index)} className="button2 bouncy">Delete</button>
     </div>
     </div>
   )
