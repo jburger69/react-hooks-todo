@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './App.css';
 
 function Todo({ todo, index }) {
   return(
@@ -24,6 +25,7 @@ function App() {
 
   return(
     <div className="app">
+      <h1 className="header-text">Todo App Using Hooks</h1>
       <div className="todo-list">
         {todos.map((todo, index) => (
           <Todo key={index} index={index} todo={todo} />
