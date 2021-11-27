@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 import './App.css';
 
-function Todo({ todo, index }) {
+function Todo({ todo, index, completeTodo }) {
   return(
-    <div className="todo">{ todo.text }</div>
+    <div style={{textDecoration: todo.isCompleted ? 'line-through' : ''}}
+    className="todo">
+    { todo.text }
+    <div>
+      <button onClick={() => completeTodo(index)}>Complete</button>
+    </div>
+    </div>
   )
 }
 
@@ -19,7 +25,13 @@ function TodoForm({addTodo}) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type="text" className="input" value={value} onChange={e => setValue(e.target.value)} />
+      <input 
+        type="text" 
+        className="input" 
+        value={value}
+        placeholder="Add Todo..."
+        onChange={e => setValue(e.target.value)} 
+      />
     </form>
   )
 }
@@ -45,12 +57,18 @@ function App() {
     setTodos(newTodos);
   }
 
+  const completeTodo = index => {
+    const newTodos = [...todos];
+    newTodos[index].isCompleted = true;
+    setTodos(newTodos)
+  }
+
   return(
     <div className="app">
       <h1 className="header-text">Todo App Using Hooks</h1>
       <div className="todo-list">
         {todos.map((todo, index) => (
-          <Todo key={index} index={index} todo={todo} />
+          <Todo key={index} index={index} todo={todo} completeTodo={completeTodo}/>
         ))}
         <TodoForm addTodo={addTodo} />
       </div>
